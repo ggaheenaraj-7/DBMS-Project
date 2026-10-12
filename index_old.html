@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Smart Logistics & Courier Tracking</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🚚 Smart Logistics</div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#book">Book</a>
+    <a href="#track">Track</a>
+    <a href="#operations">Operations</a>
+    <a href="#admin">Admin</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <span class="pill">AI-ENABLED COURIER TRACKING</span>
+    <h1>One platform from booking to delivery confirmation.</h1>
+    <p>Customer visibility, warehouse coordination, driver allocation, predictive ETA, alerts and operational analytics.</p>
+    <button onclick="document.querySelector('#book').scrollIntoView({behavior:'smooth'})">Book a Courier</button>
+  </div>
+  <div class="hero-card">
+    <div class="mini-label">LIVE SHIPMENT</div>
+    <strong id="heroTracking">TRK-DEMO-001</strong>
+    <div class="progress"><span style="width:78%"></span></div>
+    <p id="heroStatus">Out for delivery · ETA 42 min</p>
+  </div>
+</section>
+
+<section id="dashboard" class="section">
+  <div class="section-title"><div><span class="eyebrow">DASHBOARD</span><h2>Operational overview</h2></div><button class="secondary" onclick="loadDashboard()">Refresh</button></div>
+  <div id="stats" class="cards"></div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Shipment status bar</h3>
+      <div id="statusBars"></div>
+    </div>
+    <div class="panel">
+      <h3>AI decision support</h3>
+      <div id="aiPanel" class="ai-box">Loading recommendations…</div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="section">
+  <div class="section-title"><div><span class="eyebrow">CUSTOMER</span><h2>Online courier booking</h2></div></div>
+  <form id="bookingForm" class="panel form-grid">
+    <input name="customer_id" type="number" value="2" placeholder="Customer ID" required>
+    <input name="sender_name" placeholder="Sender name" required>
+    <input name="receiver_name" placeholder="Receiver name" required>
+    <input name="origin" placeholder="Pickup location" required>
+    <input name="destination" placeholder="Destination" required>
+    <select name="package_type"><option>Document</option><option>Parcel</option><option>Fragile</option><option>Electronics</option><option>Food</option></select>
+    <input name="weight" type="number" step="0.1" min="0.1" placeholder="Weight (kg)" required>
+    <select name="priority"><option>Normal</option><option>Express</option><option>Urgent</option></select>
+    <button type="submit">Create Shipment</button>
+  </form>
+  <div id="bookingResult"></div>
+</section>
+
+<section id="track" class="section">
+  <div class="section-title"><div><span class="eyebrow">REAL-TIME TRACKING</span><h2>Track a shipment</h2></div></div>
+  <div class="track-search panel">
+    <input id="trackingInput" placeholder="Enter tracking ID e.g. TRK-DEMO-001">
+    <button onclick="trackShipment()">Track</button>
+  </div>
+  <div id="trackingResult"></div>
+</section>
+
+<section id="operations" class="section">
+  <div class="section-title"><div><span class="eyebrow">OPERATIONS</span><h2>Warehouse, drivers & delivery</h2></div></div>
+  <div class="grid3">
+    <div class="panel"><h3>Warehouse intelligence</h3><div id="warehouses"></div></div>
+    <div class="panel"><h3>Driver & vehicle allocation</h3><div id="drivers"></div></div>
+    <div class="panel"><h3>Delivery controls</h3>
+      <button onclick="runAI()">AI Assign Driver</button>
+      <button class="secondary" onclick="simulateDelay()">Detect Exceptions</button>
+      <button class="secondary" onclick="reverseLogistics()">Create Return</button>
+    </div>
+  </div>
+</section>
+
+<section id="admin" class="section">
+  <div class="section-title"><div><span class="eyebrow">ADMIN MODULE</span><h2>Monitoring & reports</h2></div></div>
+  <div class="grid3">
+    <div class="panel"><h3>Role-based access</h3><p>Admin, customer, warehouse staff and delivery agent roles are stored in the database and checked by the PHP API.</p></div>
+    <div class="panel"><h3>QR tracking</h3><div id="qrText" class="codebox">Generate from a tracking ID</div><button onclick="generateQR()">Generate QR Payload</button></div>
+    <div class="panel"><h3>Feedback & ratings</h3>
+      <select id="rating"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select>
+      <input id="feedback" placeholder="Customer feedback">
+      <button onclick="submitFeedback()">Submit</button>
+    </div>
+  </div>
+  <div class="panel report">
+    <h3>Operational report</h3>
+    <table><thead><tr><th>Metric</th><th>Value</th><th>Meaning</th></tr></thead><tbody id="reportRows"></tbody></table>
+  </div>
+</section>
+</main>
+<footer>Smart Logistics & Courier Tracking · PHP + MySQL · AI decision-support demo</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
